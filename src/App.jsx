@@ -1,27 +1,25 @@
-import { GoogleLoginButton } from "react-social-login-buttons"
-import { LoginSocialGoogle } from "reactjs-social-login"
+import { RouterProvider, createRoutesFromElements, Route, createBrowserRouter } from "react-router-dom"
+import Layout from "./Layout"
+import Home from "./pages/Home"
+import Login from "./pages/Login"
+import User from "./pages/User"
 
 function App() {
 
-  return (
-    <>
-      <h1 className="text-blue-500">Note Keeper</h1>
-      <LoginSocialGoogle
-      client_id="134566637399-399ubtiq424jpckgfkfpbo2fmlt2ccui.apps.googleusercontent.com"
-      scope="openid profile email"
-      discoveryDocs="claims_supported"
-      access_type="offline"
-      onResolve={({provider, data}) => {
-        console.log(provider, data)
-      }}
-      onReject={(err) => {
-        console.log(err)
-      }}
-      >
-        <GoogleLoginButton />
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/" element={ <Layout />} >
+          <Route index element={ < Home />} />
+          <Route path="/Login" element={ <Login />} />
+          <Route path="/User" element={ < User /> } />
+        </Route>
+      </>
+    )
+  )
 
-      </LoginSocialGoogle>
-    </>
+  return (
+    <RouterProvider router={router} />
   )
 }
 
