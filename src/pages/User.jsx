@@ -1,12 +1,28 @@
+import { useEffect } from 'react'
+import { useLocation } from "react-router-dom";
+
+
 
 function User() {
+    const location = useLocation()
+
+    const queryParams = new URLSearchParams(location.search)
+    const userName = queryParams.get("name")
+
+    useEffect(() => {
+        console.log(userName)
+    })
+
     return ( 
-        <div className="h-[90vh]">
-            <p>User's Page</p>
-            <div className="mt-4 text-center">
-                <h2>You're in! Welcome to the real world!</h2>
+        <>
+            <div className="h-[90vh]">
+                <p>{userName},</p>
+                <div className="mt-4 text-center">
+                    <h2>Welcome to the real world!</h2>
+                </div>
             </div>
-        </div>
+            
+        </>
 
      );
 }

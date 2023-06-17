@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 function Header() {
 
     const [isHamburgerClicked, setIsHamburgerClicked] = useState(false)
+
 
     const handleClickedHamburger = () => {
         setIsHamburgerClicked(preValue => !preValue)
@@ -17,7 +18,7 @@ function Header() {
           </div>
           <div>
             {/* hamburger menu icon */}
-            <div onClick={handleClickedHamburger} className={`relative ${isHamburgerClicked ? "z-10" : ""}`}>
+            <div onClick={handleClickedHamburger} className={`cursor-pointer relative ${isHamburgerClicked ? "z-10" : ""}`}>
                 <div className={`h-1 w-[27px] bg-black  duration-500 ${isHamburgerClicked ? "translate-x-[-4.5px] translate-y-[6px] rotate-[-405deg] " : ""} `}></div>
                 <div className={`h-1 w-[27px] bg-black mt-2 duration-500 ${isHamburgerClicked ? "translate-x-[-4.5px] translate-y-[-6px] rotate-[405deg]" : ""}`}></div>
             </div>
@@ -26,10 +27,10 @@ function Header() {
                 <div className={`${isHamburgerClicked ? "flex items-center" : "hidden"}`}>
                     <ul className="text-lg font-bold flex flex-col justify-between mt-[50px] p-4">
                         <li>
-                            <NavLink to={'/'}>Home</NavLink>
+                            <NavLink to={'/'} onClick={() => setIsHamburgerClicked(false)}>Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to={'/Login'}>Sign in</NavLink>
+                            <NavLink to={'/Login'} onClick={() => setIsHamburgerClicked(false)}>Sign in</NavLink>
                         </li>
                         
                     </ul>
