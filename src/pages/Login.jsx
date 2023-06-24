@@ -2,9 +2,13 @@ import { GoogleLoginButton } from "react-social-login-buttons"
 import { LoginSocialGoogle } from "reactjs-social-login"
 import { useNavigate } from 'react-router-dom'
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { setUserImg, setAccessToken } from "../Redux/userSlice"
 
-function App() {
+function Login() {
   const navigate = useNavigate()
+  const { userImg } = useSelector(state => state.user)
+  const dispatch = useDispatch()
 
   return (
     <div className="h-[75vh] px-[5%] flex justify-center items-center">
@@ -15,8 +19,12 @@ function App() {
       discoveryDocs="claims_supported"
       access_type="offline"
       onResolve={({provider, data}) => {
+
         console.log(provider,data)
+        dispatch( setUserImg(data.picture) )
+        dispatch( setAccessToken(data.access_token) )
         navigate(`/User?name=${data.family_name}`)
+
       }}
       onReject={(err) => {
         console.log(err)
@@ -31,4 +39,4 @@ function App() {
   )
 }
 
-export default App
+export default Login
