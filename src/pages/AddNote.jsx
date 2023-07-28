@@ -1,14 +1,18 @@
 import { useState } from 'react'
 import handleConvertToPDF from '../helpers/convertToPdf'
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddNote = () => {
+    const notify = () => toast("Note successfully added!");
 
     const [noteName, setNoteName] = useState('')
     const [noteImages, setNoteImages] = useState([])
 
 
     const handleDownloadPdf = () => {
-        handleConvertToPDF(noteImages)
+        handleConvertToPDF(noteImages, noteName)
     }
     const handleFileChange = (e) => {
         const fileInput = e.target;
@@ -39,6 +43,7 @@ const AddNote = () => {
 
     return (
         <div className="p-2">
+            <ToastContainer />
             <form action="" onSubmit={e => handleSubmit(e)}>
                 <label htmlFor="note-name" className="mt-2 text-md block">Note Name</label>
                 <input type="text" value={noteName} onChange={e => setNoteName(e.target.value)} className="mt-2 w-[300px] rounded-sm outline-none p-2" />
@@ -46,7 +51,7 @@ const AddNote = () => {
                 <label htmlFor="note-images" className="mt-3 text-md block">Select note images</label>
                 <input type="file" name="note-images" id="note-images" multiple accept="image/*" onChange={handleFileChange} className="mt-2"/>
                 
-                <button type="submit" className="mt-4 p-2 bg-white rounded-sm">Add</button>
+                <button type="submit" className="mt-4 p-2 bg-white rounded-sm" onClick={notify}>Add</button>
                 <button onClick={handleDownloadPdf}><i className="fa-solid fa-download text-green-600 text-lg mt-2 ml-2"></i></button>
             </form>
             
