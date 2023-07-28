@@ -1,24 +1,20 @@
-import { useEffect } from 'react'
-import { useLocation } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 
 function User() {
-    const location = useLocation()
 
-    const queryParams = new URLSearchParams(location.search)
-    const userName = queryParams.get("name")
-
-    useEffect(() => {
-        console.log(userName)
-    })
+    const navigate = useNavigate()
 
     return ( 
         <>
-            <div className="h-[90vh]">
-                {userName && <p>{userName},</p>}
-                <div className="mt-4 text-center">
-                    <h2>Welcome to the real world!</h2>
+            <div className="h-[90vh] p-2">
+                <div className="mt-4">
+                    <h2 className="font-bold text-lg">
+                        Convert your note images to pdf
+                    </h2>
+                    <div className="flex justify-center items-center bg-white rounded-md mt-2 p-2 w-[100px] " onClick={() => navigate('/AddNote') }>
+                        <p>Add Notes</p>
+                    </div>
                 </div>
             </div>
             

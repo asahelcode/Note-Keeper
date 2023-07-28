@@ -5,6 +5,7 @@ import Layout from "./Layout"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import User from "./pages/User"
+import AddNote from "./pages/AddNote"
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route index element={ < Home />} />
           <Route path="/Login" element={ <Login />} />
           <Route path="/User" element={ < User /> } />
+          <Route path="/AddNote" element={ <AddNote /> } />
       </Route>
     </>
 
