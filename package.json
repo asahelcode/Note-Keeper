@@ -2,6 +2,7 @@
   "name": "note-keeper",
   "private": true,
   "version": "0.0.0",
+  "proxy": "http://localhost:5000",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +13,7 @@
   "dependencies": {
     "@react-oauth/google": "^0.11.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
     "html2pdf.js": "^0.10.1",
     "jspdf": "^2.5.1",
     "jwt-decode": "^3.1.2",
